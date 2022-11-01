@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_search_app/data/repository/image_repository.dart';
 import 'package:image_search_app/ui/main/components/image_item.dart';
 import 'package:image_search_app/ui/main/main_view_model.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -13,7 +14,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final viewModel = MainViewModel(ImageRepository());
   final queryTextController = TextEditingController();
 
   @override
@@ -24,6 +24,8 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<MainViewModel>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('이미지 검색'),
@@ -38,15 +40,9 @@ class _MainScreenState extends State<MainScreen> {
                   suffixIcon: IconButton(
                     onPressed: () async {
                       log('로딩시작!!!!!!!!');
-                      setState(() {
-                        viewModel.isLoading = true;
-                      });
 
                       await viewModel.fetchImages(queryTextController.text);
 
-                      setState(() {
-                        viewModel.isLoading = false;
-                      });
                       log('로딩끝!!!!!!!!');
                     },
                     icon: Icon(Icons.search),
@@ -60,13 +56,13 @@ class _MainScreenState extends State<MainScreen> {
                   fillColor: Colors.white70),
             ),
           ),
-          _buildList(),
+          _buildList(viewModel),
         ],
       ),
     );
   }
 
-  Widget _buildList() {
+  Widget _buildList(MainViewModel viewModel) {
     return Expanded(
       child: viewModel.isLoading
           ? Center(child: CircularProgressIndicator())
