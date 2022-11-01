@@ -9,6 +9,6 @@ class MainViewModel {
   MainViewModel(this.repository);
 
   Future<void> fetchImages(String query) async {
-    await repository.fetchImages(query);
+    items = await repository.fetchImages(query);
   }
 }

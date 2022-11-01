@@ -4,8 +4,8 @@ class ImageRepository {
     await Future.delayed(Duration(seconds: 2));
 
     return [
-      'https://img.gqkorea.co.kr/gq/2022/08/style_63073140eea70.jpg',
-      'https://img.gqkorea.co.kr/gq/2022/08/style_63073140eea70.jpg',
+      'https://pixabay.com/get/gf74f25848fb1d60fd09241c381219f81cc5af147354219a0012fdd3385565057b484078122fca3695b116f8e47abaadd_640.jpg',
+      'https://pixabay.com/get/gf74f25848fb1d60fd09241c381219f81cc5af147354219a0012fdd3385565057b484078122fca3695b116f8e47abaadd_640.jpg',
     ];
   }
 }

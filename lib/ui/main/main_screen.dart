@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:image_search_app/data/repository/image_repository.dart';
+import 'package:image_search_app/ui/main/components/image_item.dart';
 import 'package:image_search_app/ui/main/main_view_model.dart';
 
 class MainScreen extends StatefulWidget {
@@ -62,7 +63,8 @@ class _MainScreenState extends State<MainScreen> {
       child: viewModel.isLoading
           ? Center(child: CircularProgressIndicator())
           : ListView(
-              children: viewModel.items.map((e) => Image.network(e)).toList(),
+              children: viewModel.items
+                  .map((e) => ImageItem(url: e)).toList(),
             ),
     );
   }
