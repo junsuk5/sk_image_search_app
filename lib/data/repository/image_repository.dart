@@ -20,7 +20,10 @@ class ImageRepository {
 
     return imageResult.hits!
         .where((e) => e.webformatURL != null)
-        .map((e) => Photo(e.webformatURL!, e.tags ?? '정보 없음',))
+        .map((e) => Photo(
+              e.webformatURL!,
+              e.tags ?? '정보 없음',
+            ))
         .toList();
   }
 }

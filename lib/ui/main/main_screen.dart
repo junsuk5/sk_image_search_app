@@ -1,7 +1,7 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:image_search_app/data/repository/image_repository.dart';
 import 'package:image_search_app/ui/detail/detail_screen.dart';
 import 'package:image_search_app/ui/main/components/image_item.dart';
 import 'package:image_search_app/ui/main/main_view_model.dart';
@@ -16,10 +16,28 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final queryTextController = TextEditingController();
+  StreamSubscription<String>? subscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      final viewModel = context.read<MainViewModel>();
+      subscription = viewModel.eventStream.listen((message) {
+        final snackBar = SnackBar(
+          content: Text(message),
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      });
+    });
+  }
 
   @override
   void dispose() {
     queryTextController.dispose();
+    subscription?.cancel();
     super.dispose();
   }
 
