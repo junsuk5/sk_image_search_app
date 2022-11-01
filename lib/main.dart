@@ -20,8 +20,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+
+  final List<String> items = [
+    'https://img.gqkorea.co.kr/gq/2022/08/style_63073140eea70.jpg',
+    'https://img.gqkorea.co.kr/gq/2022/08/style_63073140eea70.jpg',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,65 +68,9 @@ class MainScreen extends StatelessWidget {
   Widget _buildList() {
     return Expanded(
       child: ListView(
-        children: [
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-          Text('asdfasdfa'),
-        ],
+        children: items
+            .map((e) => Image.network(e))
+            .toList(),
       ),
     );
   }
