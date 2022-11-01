@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:image_search_app/data/repository/image_repository.dart';
 import 'package:image_search_app/ui/main/main_view_model.dart';
 
 class MainScreen extends StatefulWidget {
@@ -11,7 +12,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final viewModel = MainViewModel();
+  final viewModel = MainViewModel(ImageRepository());
 
   @override
   Widget build(BuildContext context) {

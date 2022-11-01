@@ -1,13 +1,14 @@
+import 'package:image_search_app/data/repository/image_repository.dart';
+
 class MainViewModel {
+  final ImageRepository repository;
+
   List<String> items = [];
   bool isLoading = false;
 
-  Future<void> fetchImages(String query) async {
-    await Future.delayed(Duration(seconds: 2));
+  MainViewModel(this.repository);
 
-    items = [
-      'https://img.gqkorea.co.kr/gq/2022/08/style_63073140eea70.jpg',
-      'https://img.gqkorea.co.kr/gq/2022/08/style_63073140eea70.jpg',
-    ];
+  Future<void> fetchImages(String query) async {
+    await repository.fetchImages(query);
   }
 }
