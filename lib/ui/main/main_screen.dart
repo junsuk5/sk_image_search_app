@@ -69,19 +69,19 @@ class _MainScreenState extends State<MainScreen> {
           ? Center(child: CircularProgressIndicator())
           : GridView.count(
               crossAxisCount: 2,
-              children: viewModel.items.map((e) {
+              children: viewModel.items.map((photo) {
                 return GestureDetector(
                   onTap: () {
                     // 화면 이동
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => DetailScreen(url: e)),
+                          builder: (context) => DetailScreen(photo: photo)),
                     );
                   },
                   child: Hero(
-                    tag: e,
-                    child: ImageItem(url: e),
+                    tag: photo.url,
+                    child: ImageItem(url: photo.url),
                   ),
                 );
               }).toList(),

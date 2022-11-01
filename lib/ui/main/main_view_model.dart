@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:image_search_app/data/model/photo.dart';
 import 'package:image_search_app/data/repository/image_repository.dart';
 
 class MainViewModel extends ChangeNotifier {
   final ImageRepository repository;
 
-  List<String> items = [];
+  List<Photo> items = [];
   bool isLoading = false;
 
   MainViewModel(this.repository);

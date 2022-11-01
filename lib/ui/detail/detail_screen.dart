@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:image_search_app/data/model/photo.dart';
 
 class DetailScreen extends StatelessWidget {
-  final String url;
+  final Photo photo;
 
   const DetailScreen({
     Key? key,
-    required this.url,
+    required this.photo,
   }) : super(key: key);
 
   @override
@@ -15,15 +16,15 @@ class DetailScreen extends StatelessWidget {
       body: Column(
         children: [
           Hero(
-            tag: url,
+            tag: photo.url,
             child: Image.network(
-              url,
+              photo.url,
               width: double.infinity,
               height: 300,
               fit: BoxFit.cover,
             ),
           ),
-          Text('부가 정보'),
+          Text(photo.description),
         ],
       ),
     );
