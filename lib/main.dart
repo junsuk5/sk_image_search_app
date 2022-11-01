@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,10 +31,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
-  final List<String> items = [
-    'https://img.gqkorea.co.kr/gq/2022/08/style_63073140eea70.jpg',
-    'https://img.gqkorea.co.kr/gq/2022/08/style_63073140eea70.jpg',
-  ];
+  List<String> items = [];
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +46,16 @@ class _MainScreenState extends State<MainScreen> {
             child: TextField(
               decoration: InputDecoration(
                   suffixIcon: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      log('click!!!!!!!!');
+
+                      setState(() {
+                        items = [
+                          'https://img.gqkorea.co.kr/gq/2022/08/style_63073140eea70.jpg',
+                          'https://img.gqkorea.co.kr/gq/2022/08/style_63073140eea70.jpg',
+                        ];
+                      });
+                    },
                     icon: Icon(Icons.search),
                   ),
                   border: OutlineInputBorder(
