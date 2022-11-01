@@ -75,10 +75,14 @@ class _MainScreenState extends State<MainScreen> {
                     // 화면 이동
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => DetailScreen(url: e)),
+                      MaterialPageRoute(
+                          builder: (context) => DetailScreen(url: e)),
                     );
                   },
-                  child: ImageItem(url: e),
+                  child: Hero(
+                    tag: e,
+                    child: ImageItem(url: e),
+                  ),
                 );
               }).toList(),
             ),

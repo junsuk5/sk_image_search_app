@@ -14,7 +14,15 @@ class DetailScreen extends StatelessWidget {
       appBar: AppBar(),
       body: Column(
         children: [
-          Image.network(url),
+          Hero(
+            tag: url,
+            child: Image.network(
+              url,
+              width: double.infinity,
+              height: 300,
+              fit: BoxFit.cover,
+            ),
+          ),
           Text('부가 정보'),
         ],
       ),
