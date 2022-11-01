@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:image_search_app/data/repository/image_repository.dart';
+import 'package:image_search_app/ui/detail/detail_screen.dart';
 import 'package:image_search_app/ui/main/components/image_item.dart';
 import 'package:image_search_app/ui/main/main_view_model.dart';
 import 'package:provider/provider.dart';
@@ -68,8 +69,18 @@ class _MainScreenState extends State<MainScreen> {
           ? Center(child: CircularProgressIndicator())
           : GridView.count(
               crossAxisCount: 2,
-              children: viewModel.items
-                  .map((e) => ImageItem(url: e)).toList(),
+              children: viewModel.items.map((e) {
+                return GestureDetector(
+                  onTap: () {
+                    // 화면 이동
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DetailScreen(url: e)),
+                    );
+                  },
+                  child: ImageItem(url: e),
+                );
+              }).toList(),
             ),
     );
   }
