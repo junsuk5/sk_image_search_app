@@ -14,6 +14,13 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final viewModel = MainViewModel(ImageRepository());
+  final queryTextController = TextEditingController();
+
+  @override
+  void dispose() {
+    queryTextController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +33,7 @@ class _MainScreenState extends State<MainScreen> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
+              controller: queryTextController,
               decoration: InputDecoration(
                   suffixIcon: IconButton(
                     onPressed: () async {
@@ -34,7 +42,7 @@ class _MainScreenState extends State<MainScreen> {
                         viewModel.isLoading = true;
                       });
 
-                      await viewModel.fetchImages('query');
+                      await viewModel.fetchImages(queryTextController.text);
 
                       setState(() {
                         viewModel.isLoading = false;
@@ -62,7 +70,8 @@ class _MainScreenState extends State<MainScreen> {
     return Expanded(
       child: viewModel.isLoading
           ? Center(child: CircularProgressIndicator())
-          : ListView(
+          : GridView.count(
+              crossAxisCount: 2,
               children: viewModel.items
                   .map((e) => ImageItem(url: e)).toList(),
             ),
